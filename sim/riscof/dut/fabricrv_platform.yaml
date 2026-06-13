@@ -1,0 +1,4 @@
+nmi:
+  label: rvtest_entry_point
+reset:
+  label: rvtest_entry_point

@@ -1,0 +1,32 @@
+Stoic-V — a deterministic RV32IM_zba_zbb_zbs_zicsr core
+Copyright 2026 John Goodacre
+
+This product includes software developed for the Stoic-V project.
+Licensed under the Apache License, Version 2.0 (see the LICENSE file).
+
+----------------------------------------------------------------------
+Scope / licensing
+----------------------------------------------------------------------
+The Apache-2.0 license covers the original work of this project:
+  - rtl/core/*               (the RV32 core IP — the deliverable)
+  - fw/*                     (optional example bring-up firmware)
+  - sim/* (except sim/embench/), tb/*   (test harnesses)
+  - tests/*                  (directed tests)
+  - docs/*, vivado/*         (documentation and build scripts)
+
+EXCEPTION — sim/embench/ is licensed GPL-3.0-or-later (see the SPDX headers in
+those files). The Embench-IoT board port builds against Embench-IoT (GPL-3.0),
+so the port files are marked GPLv3 to match. It is an OPTIONAL
+performance-measurement harness and is NOT part of the core IP deliverable
+(rtl/core/*), which remains Apache-2.0 and carries no GPL obligation.
+
+----------------------------------------------------------------------
+Third-party benchmarks (fetched at build time — NOT redistributed here)
+----------------------------------------------------------------------
+  - CoreMark(R) is an EEMBC benchmark; its source is cloned from
+    github.com/eembc/coremark when you run `make coremark`. The committed
+    sim/coremark/* files are an ORIGINAL bare-metal port (Apache-2.0); no EEMBC
+    source is vendored in this repository.
+  - Embench-IoT (github.com/embench/embench-iot, GPL-3.0) is likewise fetched
+    when you run `make embench`; the committed sim/embench/* board-port files
+    are GPL-3.0-or-later (see above).

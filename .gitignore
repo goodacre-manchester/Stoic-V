@@ -1,0 +1,35 @@
+# Vivado run artifacts (repo root)
+/build/
+/.Xil/
+/vivado*.jou
+/vivado*.log
+/vivado*.backup.jou
+/vivado*.backup.log
+/dfx_runtime.txt
+/clockInfo.txt
+# route_design congestion reports + stray timing/util reports at repo root
+/iter_*.txt
+/*.rpt
+
+# Verilator build outputs (obj_dir, obj_dir_arch, obj_dir_cm, obj_dir_cm_perf, …)
+sim/obj_dir*/
+sim/build/
+
+# per-gate work areas (generated each run — covers riscof, riscv-tests, cosim,
+# lmb-contract, irq-stress, coverage, coremark, embench, and any future gate)
+sim/*/work/
+
+# formal proof artifacts (run_formal writes to work/, but guard stray ones)
+sim/formal/*.smt2
+sim/formal/*.vcd
+sim/formal/*.log
+sim/formal/*.yw
+
+# Firmware build outputs (example fw/, built with riscv-gcc)
+fw/*.elf
+fw/*.bin
+fw/firmware_imem.hex
+
+# Python caches
+__pycache__/
+*.pyc

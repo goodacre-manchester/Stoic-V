@@ -1,0 +1,33 @@
+# SPDX-License-Identifier: Apache-2.0
+# CI — portable Verilator regression (lint + directed tests + determinism gate).
+# Mirrors `make -C sim ci`; runs on the GitHub ubuntu runner with no Vivado/Spike.
+name: CI
+
+on:
+  push:
+    branches: [main]
+    # Docs-only pushes don't affect the Verilator regression — skip CI entirely
+    # (no run, no email) when every changed file is markdown. A change to any
+    # non-`.md` file (RTL, tb, tests, Makefile, this workflow) still runs CI.
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    branches: [main]
+
+jobs:
+  verilator-ci:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Verilator + RISC-V assembler
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            verilator binutils-riscv64-unknown-elf python3
+
+      - name: Tool versions
+        run: verilator --version && riscv64-unknown-elf-as --version | head -1
+
+      - name: Lint + directed tests + determinism (5-stage default)
+        run: make -C sim ci

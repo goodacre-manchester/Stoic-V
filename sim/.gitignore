@@ -1,0 +1,4 @@
+obj_dir/
+obj_dbg/
+build/
+*.vcd
