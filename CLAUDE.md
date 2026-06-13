@@ -79,8 +79,8 @@ or unrun gate. Don't claim "arch-test passes" without the carve-out (below).
 > 4.0 ns; core logic ≈ 1.23 ns; 2855 LUT / 1068 FF / 4 DSP48E2 / 0 BRAM) within the
 > resource budget; the residual is OOC routing of a floorplan-less design, not logic
 > depth (binding path is the EX forward→ALU loop).
-> **The core IP is functionally complete and validated — v1.0.0-ready.** Run
-> conformance gates in WSL (`wsl make -C sim <target>`; Spike doesn't build on
+> **The core IP is functionally complete and validated — `v1.0.0` released (2026-06-13).**
+> Run conformance gates in WSL (`wsl make -C sim <target>`; Spike doesn't build on
 > Windows).
 >
 > **Single sources of truth** (don't duplicate — link): milestone progress →
@@ -245,6 +245,12 @@ Record exact versions/install steps here as M0 pins them.
   authorises** (per-commit). Do **not** open a PR unless asked.
 - Keep `docs/implementation-backlog.md` checkboxes and the **Current status**
   table above updated in the same commit as the work they describe.
+- **Docs discipline — status reflects the CURRENT state, not history.** `README.md` and
+  any "Status" section state what is true *now* (green gates + standing conditions like
+  the §10.3 carve-out). Bug-found-and-fixed write-ups and "was X, now Y" deltas belong in
+  `docs/verification-status.md`, `CHANGELOG.md`, and the commit/tag history — not in the
+  top-level status. (Likewise, never claim an approximate cycle count: latencies are
+  exact integers — DIV_LAT=34, MUL_LAT=4, P_REDIR=3 — see `make wcet`.)
 - **CI ownership — after every push to `origin/main` that triggers a run, watch the
   GitHub Actions run to completion and fix any failure in the SAME session.** Don't
   leave a red run for the user to discover by email — a bare failure email is not a
